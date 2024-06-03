@@ -80,3 +80,6 @@ Test the connectivity between the two namespaces.
 # Ping from ns1 to ns2
 sudo ip netns exec ns1 ping 192.168.1.2
 ```
+Conclusion
+
+You've successfully set up a virtual switch using OVS and connected two network namespaces to it. This setup can be extended further to simulate more complex network topologies or to test network configurations in an isolated environment.
