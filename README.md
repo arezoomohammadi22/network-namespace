@@ -14,3 +14,12 @@ You can install these packages using your package manager. For example, on Ubunt
 ```bash
 sudo apt update
 sudo apt install openvswitch-switch iproute2
+```
+
+Steps
+
+1. Create a Virtual Switch using OVS
+```bash
+# Create a new OVS bridge
+sudo ovs-vsctl add-br ovs-br0
+```
