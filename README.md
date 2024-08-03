@@ -16,16 +16,18 @@ sudo apt update
 sudo apt install openvswitch-switch iproute2
 ```
 
-Steps
+## Steps
 
 1. Create a Virtual Switch using OVS
+   
 ```bash
 # Create a new OVS bridge
 sudo ovs-vsctl add-br ovs-br0
 ```
 
 2. Create Network Namespaces
-Next, we will create two network namespaces.
+
+Next, We will create two network namespaces.
 
 ```bash
 # Create two network namespaces
@@ -34,6 +36,7 @@ sudo ip netns add ns2
 ```
 
 3. Create Virtual Ethernet Pairs
+
 Create virtual Ethernet pairs to connect the namespaces to the OVS bridge.
 
 ```bash
@@ -43,7 +46,7 @@ sudo ip link add veth2 type veth peer name veth2-br
 ```
 
 4. Connect Veth Pairs to Namespaces and OVS
-   
+
 ```bash
 # Move veth1 to namespace ns1
 sudo ip link set veth1 netns ns1
@@ -55,7 +58,9 @@ sudo ip link set veth2 netns ns2
 sudo ovs-vsctl add-port ovs-br0 veth1-br
 sudo ovs-vsctl add-port ovs-br0 veth2-br
 ```
+
 5. Assign IP Addresses and Bring Up Interfaces
+
 Assign IP addresses to the interfaces inside the namespaces and bring them up.
 
 ```bash
@@ -75,11 +80,14 @@ sudo ip link set dev veth2-br up
 ```
 
 6. Test Connectivity
+
 Test the connectivity between the two namespaces.
+
 ```bash
 # Ping from ns1 to ns2
 sudo ip netns exec ns1 ping 192.168.1.2
 ```
-Conclusion
+
+## Conclusion
 
 You've successfully set up a virtual switch using OVS and connected two network namespaces to it. This setup can be extended further to simulate more complex network topologies or to test network configurations in an isolated environment.
